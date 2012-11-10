@@ -29,9 +29,7 @@ class PygView(object):
 
 
     def run(self):
-        """
-        The mainloop
-        """
+        """Mainloop"""
         running = True
         while running:
             for event in pygame.event.get():
@@ -59,8 +57,7 @@ class PygView(object):
         
 
     def draw_text(self, text):
-        """Center text in window
-        """
+        """Center text in window."""
         fw, fh = self.font.size(text)
         surface = self.font.render(text, True, (0, 255, 0))
         self.screen.blit(surface, ((self.width - fw) // 2, (self.height - fh) // 2))

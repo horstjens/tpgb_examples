@@ -58,8 +58,7 @@ class PygView(object):
 
         
     def circle(self, x, y, radius, width):
-        """Allocate surface for blitting and draw circle
-        """
+        """Allocate surface for blitting and draw circle."""
         rad2 = 2 * radius
         surface = pygame.Surface((rad2, rad2))
         pygame.draw.circle(surface, self.act_rgb, (radius, radius), radius, width)
@@ -68,8 +67,7 @@ class PygView(object):
 
 
     def run(self, draw_dynamic):
-        """The mainloop
-        """
+        """The Mainloop"""
         running = True
         while running:
             self.flip()
@@ -124,8 +122,7 @@ class Ball(object):
 
 
     def pulse(self):
-        """Shrink or expand ball
-        """
+        """Shrink or expand ball."""
         if not self.speed_pulse:
             return
 
@@ -144,8 +141,7 @@ class Ball(object):
         
         
     def draw(self, view):
-        """ Draw on a device with an appropriate interface
-        """
+        """ Draw on a device with an appropriate interface."""
         if self.speed_pulse:
             color = random_rgb()
         else:
@@ -156,14 +152,12 @@ class Ball(object):
 ####
 
 def action(balls, width, view):
-    """ Return a function for the pygame mainloop
-    """
+    """ Return a function for the pygame mainloop."""
     # balls move to the right first 
     right_moving = [True] * len(balls)
 
     def animate_balls():
-        """ Draw moving balls
-        """
+        """ Draw moving balls."""
         for i, ball in enumerate(balls):
             if right_moving[i]:
                 if ball.max_x < width:
@@ -184,7 +178,7 @@ def action(balls, width, view):
 ####
 
 def main(width):
-    """Simple example with stationary and moving balls
+    """Simple example with stationary and moving balls.
     """   
     view = PygView(width)
     
@@ -198,17 +192,17 @@ def main(width):
 
     view.draw_dynamic()
     ball1 = Ball(15, 130, 100, 1, 0, (255, 0, 0))
-    ball2 = Ball(25, 200, 80, 2, 0, (0, 255, 155))
+    ball2 = Ball(25, 200, 120, 2, 0, (0, 255, 155))
     ball3 = Ball(20, 220, 110, 1, 1, (100, 55, 155))
     ball4 = Ball(20, 400, 70, 3, 0, (250, 100, 255))
     ball5 = Ball(90, 390, 70, 0, 1, (250, 100, 255), 1)
 
-    loopfunc = action((ball1, ball2, ball4, ball5), width, view)
+    loopfunc = action((ball1, ball2, ball5, ball4), width, view)
     view.run(loopfunc)
 
 ####
     
 if __name__ == '__main__':
 
-    main(900)
+    main(920)
     

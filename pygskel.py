@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Code skeleton for ThePythonGameBook examples
+Code Skeleton for Pygame Examples
 """
 
 ####
@@ -12,10 +12,10 @@ import pygame
 ####
 
 class PygView(object):
-
+    """A Basic Pygame Window""" 
   
     def __init__(self, width=800, height=600, fps=50, backcol=(0,0,0)):
-        
+        """Standart Initialisation Stuff"""
         pygame.init()
         self.width = width
         self.height = height
@@ -29,9 +29,7 @@ class PygView(object):
        
 
     def run(self):
-        """
-        The mainloop
-        """
+        """Mainloop"""
         running = True
         while running:
             self.flip()    
@@ -48,15 +46,14 @@ class PygView(object):
 
 
     def action(self):
-
         pass
 
         
     def flip(self):
-
-         pygame.display.flip()
-         self.clock.tick(self.fps)
-         self.screen.blit(self.background, (0, 0))
+        """Using double buffering: Draw to background and blit to foreground."""
+        pygame.display.flip()
+        self.clock.tick(self.fps)
+        self.screen.blit(self.background, (0, 0))
 
 ####
 

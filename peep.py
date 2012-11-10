@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-per-pixel-alpha demo
+Drawing with Alpha Values
 """
   
 ####
@@ -28,8 +28,7 @@ def check(x, minval=0, maxval=255):
 ####
 
 def offset(len1, len2):
-    """ For picture centering
-    """
+    """ For picture centering"""
     return max(0, (len1 - len2) // 2)
 
 ####
@@ -51,7 +50,7 @@ class PeepDemo(object):
         self.background = pygame.Surface(self.screen.get_size()).convert()  
         self.background.fill(opts['backcol'])
 
-        self.ppa_surface = pygame.Surface(self.screen.get_size(), flags=pygame.SRCALPHA)
+        self.alpha_surface = pygame.Surface(self.screen.get_size(), flags=pygame.SRCALPHA)
         self.pic_offset = offset(self.width, self.pic.get_width()),\
                           offset(self.height, self.pic.get_height())
 
@@ -64,9 +63,7 @@ class PeepDemo(object):
 
 
     def calc_rad_alphas(self, radius, n):
-        """
-        Calculate linear radius and alpha values
-        """
+        """Calculate linear radius and alpha values."""
         assert 0 < n < 256, "Invalid number of holes!"
 
         rad_step = radius // n
@@ -75,9 +72,7 @@ class PeepDemo(object):
              
 
     def calc_centers(self, center, pos, holes):
-        """
-        Calculate center points from center (of window) to mouse position
-        """
+        """Calculate center points from center (of window) to mouse position."""
 
         cx, cy = center
         mx, my = pos 
@@ -89,9 +84,7 @@ class PeepDemo(object):
 
         
     def run(self):
-        """
-        Mainloop
-        """
+        """Mainloop"""
         mainloop = True
         while mainloop:
             self.flip()
@@ -118,26 +111,22 @@ class PeepDemo(object):
             
    
     def show(self):
-        """
-        Draw all
-        """
+        """Draw all."""
 
         # picture on screen
         self.screen.blit(self.pic, self.pic_offset)
         # circles on alpha surface
         for (r, a), c in zip(self.rad_alphas, self.centers):
-            pygame.draw.circle(self.ppa_surface, (0, 0, 0, a), c, r)
+            pygame.draw.circle(self.alpha_surface, (0, 0, 0, a), c, r)
 
         # alpha surface on screen
-        self.screen.blit(self.ppa_surface, (0, 0))
+        self.screen.blit(self.alpha_surface, (0, 0))
         # erase alpha surface for new circles
-        self.ppa_surface.fill((0, 0, 0))
+        self.alpha_surface.fill((0, 0, 0))
         
  
     def flip(self):
-        """
-        Show drawing and erase
-        """
+        """Show drawing and erase."""
         pygame.display.flip()
         self.screen.blit(self.background, (0, 0))
         self.clock.tick(self.fps)
