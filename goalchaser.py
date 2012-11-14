@@ -11,7 +11,7 @@ import math
 
 ####
 
-DELTA = 1024
+DELTA = 2048
 DELTA2 = DELTA // 2
 PI2 = math.pi * 2
 
@@ -103,6 +103,7 @@ class PygView(object):
         self.width = conf['width']
         self.height = conf['height']
         self.backcol = conf['backcol']
+        self.act_color = 0, 0, 0
         self.fps = conf['fps']
         self.quit_keys = pyg.K_ESCAPE, pyg.K_q
 
@@ -370,8 +371,8 @@ class IntegrationTimer(object):
 
 ####
 
-CONFIG = {'width': 800,
-          'height': 600,
+CONFIG = {'width': 900,
+          'height': 800,
           'backcol': (250, 250, 250),
           'robot_col': (0, 99, 199),
           'goal_col': (255, 0, 0),
